@@ -1,0 +1,57 @@
+var translation = {
+    'en' : {
+        'Sign Transaction' : 'Sign Transaction',
+        'js_wrong_password': 'bad mnemonic phrase',
+        'js_cannot_decrypt': 'System can\'t decrypt private key',
+        'js_ent_pass': 'Enter master password',
+        'js_ent_em_pass': 'Enter emission password',
+        'js_message': 'Message',
+        'js_enter_em_mnemonic': 'Enter mnemonic phrase for emission key',
+        'js_enter_master_mnemonic': 'Enter mnemonic phrase for master account',
+        'dictDefaultMessage': 'Drop files or click here to upload',
+        'dictInvalidFileType': 'Invalid file type',
+        'dictFileTooBig': 'File is too big',
+        'dictFileMaxSize': 'Max file size',
+        'mb': 'MB',
+        "js_button_ok":  'OK',
+        "js_button_cancel":  'Cancel',
+        'js_safari_download_message': 'Safari may have some troubles with file downloading. If instead of downloading, Safari open file in new tab, please, press ⌘+S and save file with extension .smbx (Example: file.smbx)'
+
+},
+    'ua' : {
+        'Sign Transaction' : 'Підписати транзакцію',
+        'js_wrong_password': 'Невірна мнемонічна фраза',
+        'js_cannot_decrypt': 'Система не може розшифрувати приватний ключ',
+        'js_ent_pass': 'Вкажіть мастер-пароль',
+        'js_ent_em_pass': 'Вкажіть пароль емісії',
+        'js_message': 'Повідомлення',
+        'js_enter_em_mnemonic': 'Введіть мнемонічну фразу ключа емісії',
+        'js_enter_master_mnemonic': 'Введіть мнемонічну фразу мастер-рахунку',
+        'dictDefaultMessage': 'Перетягніть файл або клікніть',
+        'dictInvalidFileType': 'Невірний формат файлу',
+        'dictFileTooBig': 'Файл занадто великий',
+        'dictFileMaxSize': 'Максимальний розмір файлу',
+        'mb': 'МБ',
+        "js_button_ok":  'Підтвердити',
+        "js_button_cancel":  'Відміна',
+        'js_safari_download_message': 'У браузері Safari можливі проблеми зі скачування файлів. Якщо Safari замість завантаження, відкрив файл у новій вкладці, будь-ласка, натисніть ⌘+S і збережіть файл із розширенням .smbx (Наприклад: file.smbx)'
+    },
+    'ru' : {
+        'Sign Transaction' : 'Подписать транзакцию',
+        'js_wrong_password': 'Неверная мнемоническая фраза',
+        'js_cannot_decrypt': 'Система не может расшифровать приватный ключ',
+        'js_ent_pass': 'Укажите мастер-пароль',
+        'js_ent_em_pass': 'Укажите пароль емиссии',
+        'js_message': 'Сообщение',
+        'js_enter_em_mnemonic': 'Введите мнемоническую фразу ключа емиссии',
+        'js_enter_master_mnemonic': 'Введите мнемоническую фразу мастер-аккаунта',
+        'dictDefaultMessage': 'Перетащите файл или кликните',
+        'dictInvalidFileType': 'Неверный формат файла',
+        'dictFileTooBig': 'Файл слишком большой',
+        'dictFileMaxSize': 'Максимальный размер файла',
+        'mb': 'МБ',
+        "js_button_ok":  'Подтвердить',
+        "js_button_cancel":  'Отмена',
+        'js_safari_download_message': 'В браузере Safari возможны проблемы со скачиванием файлов. Если Safari вместо скачивания, открыл файл в новой вкладке, пожалуйста, нажмите ⌘+S и сохраните файл с разширением .smbx (Например: file.smbx)'
+    }
+}

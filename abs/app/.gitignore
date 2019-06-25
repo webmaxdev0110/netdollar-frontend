@@ -1,0 +1,6 @@
+vendor/
+bower_components/
+composer.lock
+node_modules/
+public/node_modules/
+logs/debug.log

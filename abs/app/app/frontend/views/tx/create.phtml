@@ -1,0 +1,114 @@
+<?php $this->partial('blocks/breadcrumbs', ['title' => 'Transactions']); ?>
+<?php if (!empty($errors)): ?>
+    <?php $this->partial("alerts/errors", array('errors' => $errors))?>
+<?php endif; ?>
+<?php if (!empty($messages)): ?>
+    <?php $this->partial("alerts/messages", array('messages' => $messages))?>
+<?php endif; ?>
+<div class="panel panel-primary panel-border">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?= $locale->_('Create new transaction') ?></h3>
+    </div>
+    <div class="panel-body">
+        <div class="col-lg-6">
+            <form class="form-horizontal" role="form" method="post">
+
+                <div class="form-group">
+                    <label for="select" class="col-lg-2 control-label"><?=$locale->_('Select transaction type')?></label>
+                    <div class="col-lg-6">
+                        <select class="form-control" name="type" id="type" onchange="showFields();">
+                            <option value="internal" <?= !empty($_POST['type']) && $_POST['type']  == 'internal' ? 'selected' : ''?>>
+                                <?=$locale->_('From bank account')?>
+                            </option>
+                            <option value="external" <?= !empty($_POST['type']) && $_POST['type'] == 'external' ? 'selected' : ''?>>
+                                <?=$locale->_('By bank&account numbers')?>
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="select" class="col-lg-2 control-label"><?=$locale->_('Account to (receiver)')?></label>
+                    <div class="col-lg-6">
+                        <select class="form-control" name="acc_id" id="acc_id">
+                            <?php if (!empty($accounts)): ?>
+                                <?php foreach ($accounts as $account): ?>
+                                    <option value="<?=$account->acc_id?>"><?=$account->acc_num?> (<?=$account->acc_value/100?> <?=$account->cur_code?>)</option>
+                                <?php endforeach;?>
+                            <?php endif ?>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group internal">
+                    <label for="select" class="col-lg-2 control-label"><?=$locale->_('Account from (sender)')?></label>
+                    <div class="col-lg-6">
+                        <select class="form-control" name="trn_sender_acc_id" id="trn_sender_acc_id">
+                            <?php if (!empty($accounts)): ?>
+                                <?php foreach ($accounts as $account): ?>
+                                    <option value="<?=$account->acc_id?>"><?=$account->acc_num?> (<?=$account->acc_value/100?> <?=$account->cur_code?>)</option>
+                                <?php endforeach;?>
+                            <?php endif ?>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group external" style="display:none;">
+                    <label for="input_cur_title" class="col-md-2 control-label"><?= $locale->_('Bank number') ?></label>
+                    <div class="col-md-6">
+                        <input class="form-control" name="trn_sender_bank_number" id="trn_sender_bank_number"
+                               type="text" value='<?= @$_POST['trn_sender_bank_number'] ?>'>
+                    </div>
+                </div>
+
+                <div class="form-group external" style="display:none;">
+                    <label for="input_cur_title" class="col-md-2 control-label"><?= $locale->_('Account number') ?></label>
+                    <div class="col-md-6">
+                        <input class="form-control" name="trn_sender_account_number" id="trn_sender_account_number"
+                               type="nubmer" value='<?= @$_POST['trn_sender_account_number'] ?>'>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="input_cur_title" class="col-md-2 control-label"><?= $locale->_('Amount') ?></label>
+                    <div class="col-md-6">
+                        <input class="form-control" name="trn_value" required="required"
+                               id="trn_value" placeholder="<?= $locale->_('Amount') ?>" type="nubmer" min="0.01" step="0.01"
+                               value='<?= @$_POST['trn_value'] ?>'>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="select" class="col-lg-2 control-label"><?=$locale->_('Transaction details')?> (<?=$com_len_limit?> - <?= $locale->_('max symbols') ?>)</label>
+                    <div class="col-lg-6">
+                        <textarea name="trn_details" id="trn_details" class="form-control" rows="5"><?= @$_POST['trn_details'] ?></textarea>
+                    </div>
+                </div>
+
+                <div class="form-group m-b-0">
+                    <div class="col-sm-offset-2 col-sm-3">
+                        <button type="submi
+                                class="btn btn-primary btn-custom waves-effect w-md waves-light m-b-5"><?= $locale->_('Create') ?></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    function showFields(){
+        if ($('#type').val() == 'external') {
+            $('.internal').hide();
+            $('.external').fadeIn('fast');
+        } else {
+            $('.external').hide();
+            $('.internal').fadeIn('fast');
+        }
+    }
+
+    $(document).ready(function(){
+        showFields();
+    });
+
+</script>

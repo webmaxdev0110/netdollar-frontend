@@ -1,0 +1,80 @@
+<?php $this->partial('blocks/breadcrumbs', ['title' => 'Transactions']); ?>
+<?php if (!empty($transactions)): ?>
+    <div class="card-box">
+        <h4 class="m-t-0 header-title"><b><?= $locale->_('Digital money transactions') ?></b></h4>
+        <table class="table table-striped m-0">
+            <thead>
+            <tr>
+                <th><?= $locale->_('TX ID') ?></th>
+                <th><?= $locale->_('TX Date') ?></th>
+                <th><?= $locale->_('TX Receiver') ?></th>
+                <th><?= $locale->_('TX Sender') ?></th>
+                <th><?= $locale->_('TX Details') ?></th>
+                <th><?= $locale->_('TX Amount') ?></th>
+                <th><?= $locale->_('TX Status') ?></th>
+                <th><?= $locale->_('TX Hash') ?></th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($transactions as $trn): ?>
+                <tr>
+                    <td><?= $trn->trn_id ?></td>
+                    <td><?= explode('.', $trn->trn_created) ? explode('.', $trn->trn_created)[0] : $trn->trn_created?></td>
+                    <td>
+                        <button type="button" class="btn btn-primary"
+                                data-container="body" title="" data-toggle="popover"
+                                data-placement="left" data-content="<?=$trn->receiver_data?>" data-original-title="<?=$locale->_('Receiver')?>">
+                            <?=$locale->_('Show receiver')?>
+                        </button>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-primary"
+                                data-container="body" title="" data-toggle="popover"
+                                data-placement="left" data-content="<?=$trn->sender_data?>" data-original-title="<?=$locale->_('Sender')?>">
+                            <?=$locale->_('Show sender')?>
+                        </button>
+                    </td>
+                    <td><?= $trn->trn_details ?></td>
+                    <td><?= $trn->trn_value/100 ?> <?= $trn->cur_code ?></td>
+                    <td><?php $this->view->partial('blocks/tx_status', ['status' => $trn->tst_id]);?>
+                    <td>
+                        <?php if ($trn->trn_hash) : ?>
+                            <button type="button" class="btn btn-primary"
+                                    data-container="body" title="" data-toggle="popover"
+                                    data-placement="left" data-content="<?=$trn->trn_hash?>" data-original-title="<?=$locale->_('Hash')?>">
+                                <?=$locale->_('Show hash')?>
+                            </button>
+                        <?php else : ?>
+                            <?php if ($trn->trn_error) : ?>
+                                <button type="button" class="btn btn-danger"
+                                        data-container="body" title="" data-toggle="popover"
+                                        data-placement="left" data-content="<?=$trn->trn_error?>" data-original-title="<?=$locale->_('Error')?>">
+                                    <?=$locale->_('Show error details')?>
+                                </button>
+                            <?php else : ?>
+                                -
+                            <?php endif; ?>
+
+                        <?php endif; ?>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+<?php else : ?>
+    <div class="portlet">
+        <div class="portlet-heading bg-warning">
+            <h3 class="portlet-title">
+                <?= $locale->_('No digital money transactions found') ?>
+            </h3>
+            <div class="portlet-widgets">
+                <a data-toggle="collapse" data-parent="#accordion1" href="#bg-warning"><i
+                        class="ion-minus-round"></i></a>
+                <span class="divider"></span>
+                <a href="#" data-toggle="remove"><i class="ion-close-round"></i></a>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+<?php endif; ?>

@@ -1,0 +1,12 @@
+{
+    "require": {
+        "atticlab/stellar-php-sdk":"dev-master",
+        "phpmailer/phpmailer": "^5.2"
+    },
+    "repositories":[
+        {
+            "type":"git",
+            "url":"https://bitbucket.org/atticlab/stellar-php"
+        }
+    ]
+}

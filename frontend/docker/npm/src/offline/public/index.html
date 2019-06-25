@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<title>Master Key MVP</title>
+	<link href="/css/dropzone.css" rel="stylesheet" type="text/css">
+	<link href="/css/style.css" rel="stylesheet" type="text/css">
+	<link href="/template/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+	<link href="/template/css/core.css" rel="stylesheet" type="text/css">
+	<link href="/template/css/icons.css" rel="stylesheet" type="text/css">
+	<link href="/template/css/components.css" rel="stylesheet" type="text/css">
+	<link href="/template/css/pages.css" rel="stylesheet" type="text/css">
+	<link href="/template/css/menu.css" rel="stylesheet" type="text/css">
+	<link href="/template/css/responsive.css" rel="stylesheet" type="text/css">
+	<link href="/template/css/info.css" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+
+	<header id="topnav">
+		<div class="topbar-main m-b-20">
+			<div class="container">
+				<div class="logo m-b-20">
+					<a href="/" class="logo"><i class="md md-equalizer"></i> <span>Offline device</span> </a>
+				</div>
+			</div>
+		</div>
+	</header>
+	<div class="wrapper">
+		<div class="container">
+
+			<!-- Page-Title -->
+			<div class="row padding-label">
+				<div class="col-sm-12">
+					<h1 class="page-title text-center" data-translate>Sign Transaction</h1>
+				</div>
+			</div>
+			<!-- Page-Title -->
+
+
+			<div class="row">
+
+				<div id="dropzone">
+					<form id="upload-widget" method="post" action="/" class="dropzone">
+					</form>
+				</div>
+			</div>
+
+			<div class="col-lg-6 col-lg-offset-3 m-t-20">
+				<div class="panel panel-color panel-primary">
+					<div class="panel-heading">
+						<h3 class="panel-title">Generate mnemonic phrase from seed</h3>
+					</div>
+					<div class="panel-body">
+						<form class="form-horizontal" onsubmit="getMnemonicFromSeed(); return false;">
+							<div class="form-group">
+								<div class="col-xs-12">
+									<label for="seed">Seed:</label>
+									<input class="form-control" type="password" name="seed" id="seed"/>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<div class="col-xs-12">
+									<label for="mnemonic">Mnemonic phrase:</label>
+									<textarea class="form-control" rows="7" name="mnemonic" id="mnemonic"></textarea>
+								</div>
+							</div>
+							<div class="form-group m-t-20">
+								<div class="col-sm-7">
+									<button
+											class="btn btn-primary btn-custom w-md waves-effect waves-light"
+											type="submit">Generate</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		var resizefunc = [];
+	</script>
+
+	<script src="/node_modules/sjcl/sjcl.js"></script>
+	<script src="/node_modules/stellar-sdk/dist/stellar-sdk.min.js"></script>
+	<script src="/js/dropzone.js"></script>
+
+	<!-- jQuery  -->
+	<script src="/template/js/jquery.min.js"></script>
+	<script src="/template/js/bootstrap.min.js"></script>
+
+	<!-- Notification js -->
+	<script src="/template/plugins/notifyjs/dist/notify.min.js"></script>
+	<script src="/template/plugins/notifications/notify-metro.js"></script>
+
+	<!-- Custom main Js -->
+	<script src="/template/js/jquery.core.js"></script>
+	<script src="/template/js/jquery.alerts.js"></script>
+
+	<script src="/js/locales.js"></script>
+	<script src="/build/bundle.js"></script>
+
+	<script>
+		var userLocale = (navigator.language || navigator.userLanguage).toLowerCase().split('-')[0];
+		var locale = (userLocale in translation) ? translation[userLocale] : translation['en'];
+
+		$('[data-translate]').each(function(){
+			if (!$(this).attr('data-translate')){
+				$(this).attr('data-translate', $(this).text());
+			}
+
+			var tr = locale[$(this).text()];
+
+			if(tr){
+				$(this).text(tr);
+			}
+		});
+
+		function getMnemonicFromSeed() {
+			$('#mnemonic').val('');
+			try {
+				$('#mnemonic').val(StellarSdk.getMnemonicFromSeed($('#seed').val()));
+			} catch (error) {
+				console.error(error);
+				alert('Bad seed. Check data');
+			}
+		}
+
+	</script>
+
+	<script>
+			Dropzone.options.uploadWidget = {
+				url: "/",
+				autoProcessQueue:false,
+				maxFilesize: 0.01, // MB
+				clickable: true,
+				acceptedFiles: ".smb",
+				dictDefaultMessage: locale.dictDefaultMessage,
+				dictInvalidFileType: locale.dictInvalidFileType,
+				dictFileTooBig: locale.dictFileTooBig + ' ({{filesize}} ' + locale.mb + '). ' + locale.dictFileMaxSize + ' - {{maxFilesize}} ' + locale.mb ,
+				maxFiles: 1,
+				accept: function(file, done){
+
+					if (this.files.length > 1) {
+						flashAlert(locale.only_one_file, 'error');
+						this.removeAllFiles(true);
+					}
+					uploadFile(file);
+				}
+			};
+
+	</script>
+
+</body>
+</html>

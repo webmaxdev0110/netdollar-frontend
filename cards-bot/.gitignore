@@ -1,0 +1,5 @@
+docker/nodejs/src/node_modules
+docker/nodejs/src/logs/**
+node_modules
+.idea
+.env

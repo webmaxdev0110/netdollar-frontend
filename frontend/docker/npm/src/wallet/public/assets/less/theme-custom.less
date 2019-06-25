@@ -1,0 +1,142 @@
+@import "theme.less";
+@import "elements.less";
+.dropdown-menu img {
+  height: 15px;
+}
+.f-s-20{
+  font-size: 20px;
+}
+.align-middle{
+  vertical-align: middle;
+  line-height: 32px;
+}
+.languages {
+  right: 10px;
+  top: 10px;
+  position: relative;
+}
+
+
+.languages a {
+  padding-left: 5px;
+}
+
+.nav-justified {
+  width: 100%;
+}
+
+.mnemonic-field {
+  max-width:100% !important;
+  height: 100px !important;
+}
+
+.unselectable {
+  -webkit-user-select: none; /* Chrome/Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+ */
+
+  /* Rules below not implemented in browsers yet */
+  -o-user-select: none;
+  user-select: none;
+}
+
+.info-block {
+  min-height: 130px;
+}
+
+pre {
+  white-space: pre-wrap;
+}
+
+#top-nav {
+  position: relative;
+  right: 0;
+  left: 0;
+  top: 0;
+  z-index: 1030;
+  background-color: transparent;
+  border: 0;
+  -webkit-transition: all .5s ease;
+  transition: all .5s ease;
+  min-height: 62px;
+}
+
+#top-nav .topbar-main {
+  background-color: @auth-topbar-color;
+  border-bottom: 1px solid #ddf;
+}
+#top-nav .topbar-main .logo {
+  color: #ffffff !important;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: .05em;
+  //margin-top: 5px;
+  //margin-bottom: 5px;
+  float: left;
+}
+
+#top-nav .topbar-main .logo img {
+  height: 44px;
+}
+
+#top-nav .flags {
+  margin-top: 16px;
+}
+
+#top-nav .flags a {
+  padding-left: 5px;
+}
+
+.panel-mnemonic {
+  margin-bottom: 0;
+}
+
+.auth-form {
+  padding: 2em 2em 1em;
+  border: 1px solid #ddd;
+}
+
+//#topnav .flag a {
+//  padding: 0 5px !important;
+//}
+
+#topnav .topbar-main .nav > li.flags > a {
+  color: #fff !important;
+  padding: 0 5px !important;
+}
+
+.card-box {
+  background: @cardbox-color;
+  border: @cardbox-border;
+}
+
+.panel {
+  background: @panel-color;
+  color: @panel-text-color;
+}
+
+.panel-body {
+  background: @panel-color;
+}
+
+.panel-footer {
+  background: darken(@panel-color, 2);
+}
+
+.panel-main > .panel-heading {
+  background-color: @main-color;
+}
+
+.panel-border.panel-main .panel-heading {
+  border-color: @main-color !important;
+  color: @main-color !important;
+}
+
+.table-striped>tbody>tr:nth-of-type(odd) {
+  background: @panel-color;
+}
+
+.label-price:not(:first-child) {
+  margin-left: 10px;
+}
+

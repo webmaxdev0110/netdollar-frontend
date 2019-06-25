@@ -1,0 +1,12 @@
+**/node_modules
+**/bower_components
+**/vendor
+**/storage
+etc
+logs
+.idea
+env.js
+.env
+**/package.json
+**/Gulpfile.js
+**/public/build

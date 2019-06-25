@@ -1,0 +1,13 @@
+{
+  "name": "smartmoney-abs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
+  "dependencies": {
+    "sjcl": "1.0.3",
+    "stellar-sdk": "git+https://atticlab:Iy0qoqIbLDYgUop0Pegcxpl0MNQbtxXv@bitbucket.org/atticlab/js-smart-sdk.git#dev",
+    "stellar-wallet-js-sdk": "git+ssh://git@bitbucket.attic.pw:7999/smar/stellar-wallet-js-sdk.git"
+  },
+  "devDependencies": {},
+  "author": "AtticLab"
+}

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="author" content="AtticLab">
+
+  <link rel="shortcut icon" href="/assets/images/favicon_1.ico">
+
+  <title>Agent Panel</title>
+
+  <link href="/assets/plugins/switchery/switchery.min.css" rel="stylesheet"/>
+  <link href="/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="/assets/css/icons.css" rel="stylesheet" type="text/css">
+  <link href="/assets/css/circle.css" rel="stylesheet" type="text/css" />
+  <link href="/assets/css/styles.min.css" rel="stylesheet" >
+
+  <script src="/assets/js/modernizr.min.js"></script>
+
+</head>
+
+
+<body class="fixed-left">
+
+<div id="spinner">
+  <i class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+</div>
+
+<div id="app"></div>
+
+<!-- Plugins  -->
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/detect.js"></script>
+<script src="/assets/js/fastclick.js"></script>
+<script src="/assets/js/jquery.slimscroll.js"></script>
+<script src="/assets/js/jquery.blockUI.js"></script>
+<script src="/assets/js/waves.js"></script>
+<script src="/assets/js/wow.min.js"></script>
+<script src="/assets/js/jquery.nicescroll.js"></script>
+<script src="/assets/js/jquery.scrollTo.min.js"></script>
+<script src="/assets/plugins/switchery/switchery.min.js"></script>
+
+<!-- Notification js -->
+<script src="/assets/plugins/notifyjs/dist/notify.min.js"></script>
+<script src="/assets/plugins/notifications/notify-metro.js"></script>
+
+<!-- Custom main Js -->
+<script src="/assets/js/jquery.core.js"></script>
+<script src="/assets/js/jquery.app.js"></script>
+<script src="/assets/js/jquery.alerts.js"></script>
+
+<!-- QR Code JS -->
+<script src="/assets/js/qrcode.js"></script>
+<script src="/assets/js/qrcode_SJIS.js"></script>
+
+<script src="/node_modules/mithril/mithril.min.js"></script>
+<script src="/node_modules/stellar-sdk/dist/stellar-sdk.min.js"></script>
+<script src="/node_modules/sjcl/sjcl.js"></script>
+<script src="/node_modules/vanilla-masker/build/vanilla-masker.min.js"></script>
+
+<script src="/build/bundle.js"></script>
+
+<script>
+  window.addEventListener("beforeunload", function (e) {
+    var confirmationMessage = "Do you want to leave this site?";
+    e.returnValue = confirmationMessage;
+    return confirmationMessage;
+  });
+</script>
+
+</body>
+</html>

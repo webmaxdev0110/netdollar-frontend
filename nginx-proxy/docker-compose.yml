@@ -1,0 +1,13 @@
+version: '2'
+services:
+  nginx-reverse:
+    restart: always
+    container_name: smartmoney-reverse-nginx
+    build: docker/nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./logs:/logs
+    env_file:
+      - .env

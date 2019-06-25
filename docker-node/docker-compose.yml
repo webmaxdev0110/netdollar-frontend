@@ -1,0 +1,64 @@
+version: '2'
+services:
+
+  core:
+    restart: always
+    container_name: dmoney-core
+    build: docker/core
+    image: crypto/core
+    ports:
+      - "${STELLAR_PEER_PORT}:${STELLAR_PEER_PORT}"
+    env_file:
+      - .env
+      - .core-cfg
+    links:
+      - postgres
+    depends_on:
+      - postgres
+    environment:
+      PGUSER: "${POSTGRES_USER}"
+      PGPASSWORD: "${POSTGRES_PASSWORD}"
+      PGHOST: postgres
+
+  horizon:
+    restart: always
+    container_name: dmoney-horizon
+    build: docker/horizon
+    image: crypto/horizon
+    ports:
+      - "8000:8000"
+    links:
+      - postgres
+      - redis
+      - core
+    depends_on:
+      - postgres
+    env_file:
+      - .core-cfg
+    environment:
+      DATABASE_URL: "postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres/horizon?sslmode=disable"
+      STELLAR_CORE_DATABASE_URL: "postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres/stellar?sslmode=disable"
+      NETWORK_PASSPHRASE: ${NETWORK_PASSPHRASE}
+      STELLAR_CORE_URL: "http://core:${STELLAR_HTTP_PORT}"
+      REDIS_URL: "redis://redis:6379"
+      LOG_LEVEL: "info"
+      INGEST: "true"
+
+  postgres:
+    restart: always
+    container_name: dmoney-postgres
+    build: docker/postgres
+    volumes:
+      - storage:/var/lib/postgresql/data
+    environment:
+      PGDATA: '/var/lib/postgresql/data'
+      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
+      POSTGRES_USER: "${POSTGRES_USER}"
+
+  redis:
+    restart: always
+    container_name: dmoney-redis
+    image: redis:3.2
+
+volumes:
+  storage:

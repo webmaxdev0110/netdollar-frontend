@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <?= Phalcon\Tag::getTitle(); ?>
+
+    <?php $this->assets->outputCss() ?>
+    <?php $this->assets->outputJs('header') ?>
+</head>
+<body>
+<!--[if IE]>
+<div id="ie_warning">You are using outdated browser, it has security vulnerabilities and is not allowed!</div>
+<![endif]-->
+
+<div id="spinner">
+    <div>Loading...</div>
+</div>
+
+<div id="wrapper">
+    <?php $this->flash->output() ?>
+
+    <?php echo $this->getContent() ?>
+
+    <?php if (!empty($js_vars)): ?>
+        <script>
+            var conf = <?=$js_vars?>;
+            var locale = JSON.parse('<?=$js_locale?>');
+        </script>
+    <?php endif ?>
+
+    <?php $this->assets->outputJs() ?>
+</div>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<?php
+    switch ($status) {
+        case \App\Models\Transactions::TX_TYPE_APPROVED:
+            echo '<label class="label label-info">' . $locale->_('Approved') . '</label>';
+            break;
+        case \App\Models\Transactions::TX_TYPE_EM_VALIDATION:
+            echo '<label class="label label-warning">' . $locale->_('On validation') . '</label>';
+            break;
+        case \App\Models\Transactions::TX_TYPE_EM_REJECTED:
+            echo '<label class="label label-danger">' . $locale->_('Rejected') . '</label>';
+            break;
+        case \App\Models\Transactions::TX_TYPE_EM_SUCCESS:
+            echo '<label class="label label-primary">' . $locale->_('Success') . '</label>';
+            break;
+        default:
+            echo $locale->_('Unknown status') . ' (ID:' . $status . ')';
+    }

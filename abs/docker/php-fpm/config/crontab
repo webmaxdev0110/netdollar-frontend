@@ -1,0 +1,2 @@
+#*   *   *   *   *  /usr/local/bin/php /app/app/cli/cli.php index paymentshandler >/dev/null 2>&1
+# An empty line is required at the end of this file for a valid cron file.

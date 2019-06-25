@@ -1,0 +1,22 @@
+version: '2'
+services:
+  nginx:
+    restart: always
+    image: smartmoney/frontend/nginx
+    container_name: smartmoney-frontend-nginx
+    build: docker/nginx
+    ports:
+      - "8010:80"
+    volumes:
+      - ./docker/npm/src:/src
+    env_file:
+      - .env
+
+  npm:
+    image: smartmoney/frontend/npm
+    container_name: smartmoney-frontend-npm
+    build: docker/npm
+    volumes:
+      - ./docker/npm/src:/src
+    env_file:
+      - .env
