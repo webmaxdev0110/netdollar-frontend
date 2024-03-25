@@ -7,7 +7,7 @@
     "basic-auth": "1.0.3",
     "body-parser": "1.15.0",
     "colors": "1.1.2",
-    "express": "4.13.4",
+    "express": "4.19.2",
     "prompt": "1.0.0",
     "sjcl": "1.0.3",
     "stellar-sdk": "git+https://github.com/atticlab/smart-sdk-js.git"
